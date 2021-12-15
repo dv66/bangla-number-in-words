@@ -134,7 +134,7 @@ def number_to_bangla_words(number_string:str):
         Bangla number in words. Example: "এক হাজার দুই শত চৌত্রিশ"
 
     """
-    num = int("".join([english_digits[bangla_digit] for bangla_digit in bangla_number_string]))
+    num = int("".join([english_digits[bangla_digit] for bangla_digit in number_string]))
     try:
         eng_in_num_to_words = num2words(num, lang='en_IN')
         bangla_num_to_words_list = [bangla_numeric_words[word] for word in eng_in_num_to_words.replace(',', ' ').replace(' and ', ' ').split()]

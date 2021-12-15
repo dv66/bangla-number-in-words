@@ -1,0 +1,10 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "cffi>=1.14.6",
+    "docopt>=0.6.2",
+    "num2words>=0.5.10",
+    "pycparser>=2.20"
+]
+build-backend = "setuptools.build_meta"
