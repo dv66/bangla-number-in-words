@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="banglanum2words",
-    version="0.0.8",
+    version="0.0.1",
     author="Syed Mostofa Monsur",
     author_email="mostofamonsur9396@gmail.com",
     description="Converts a Bangla numeric string to literal words.",
