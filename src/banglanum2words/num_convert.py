@@ -124,17 +124,10 @@ bangla_numeric_words = {
 
 
 
-def number_to_bangla_words(number_string:str):
-    """ 
-
-    Args:
-        number_string: Bangla number as string. Example: "১২৩৪"
-
-    Returns:
-        Bangla number in words. Example: "এক হাজার দুই শত চৌত্রিশ"
-
-    """
+def number_to_bangla_words_upto_millions(number_string:str):
+    number_string = number_string.strip()
     num = int("".join([english_digits[bangla_digit] for bangla_digit in number_string]))
+
     try:
         eng_in_num_to_words = num2words(num, lang='en_IN')
         bangla_num_to_words_list = [bangla_numeric_words[word] for word in eng_in_num_to_words.replace(',', ' ').replace(' and ', ' ').split()]
@@ -143,7 +136,27 @@ def number_to_bangla_words(number_string:str):
     except Exception as e:
         print(e)
 
-    return ' '.join(bangla_num_to_words_list)
+
+def number_to_bangla_words(bangla_number:str):
+    """ Converts a Bangla numeric string to literal words.
+
+    Args:
+        number_string: Bangla number as string. Example: "১২৩৪"
+
+    Returns:
+        Bangla number in words. Example: "এক হাজার দুই শত চৌত্রিশ"
+
+    """
+    chunk_upto_millions = 7
+    rev_string = bangla_number[::-1]
+    parts = [rev_string[i:i+chunk_upto_millions] for i in range(0, len(rev_string), chunk_upto_millions)]
+    parts = [p[::-1] for p in parts]
+    parts = parts[::-1]
+    main_number = " কোটি ".join([number_to_bangla_words_upto_millions(part) for part in parts])
+    main_number = main_number.replace("শূন্য", "")
+
+    return " ".join(main_number.split())
+
 
 
 
