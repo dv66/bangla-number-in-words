@@ -158,6 +158,23 @@ def number_to_bangla_words(bangla_number:str):
     return " ".join(main_number.split())
 
 
+def year_in_number_to_bangla_words(year_in_number:str):
+    """ Converts a Bangla year in numeric form to literal words.
+
+    Args:
+        number_string: Bangla year in numbers as string. Example: "১৯৯৪"
+
+    Returns:
+        Bangla year in words. Example: "উনিশশো চুরানব্বই"
+
+    """
+    if (len(year_in_number) == 4 and year_in_number[1] != '০') or len(year_in_number) == 3:
+        return number_to_bangla_words(year_in_number[:-2]) + "শো " + number_to_bangla_words(year_in_number[-2:])
+    else:
+        return number_to_bangla_words(year_in_number)
+    
+
+
 
 
 
